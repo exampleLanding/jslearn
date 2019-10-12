@@ -645,3 +645,140 @@ arr.forEach(function(item, index, massive) { // 1 аргумент - это эл
 // } finally {
 //     console.log('executed always'); // всегда выполняется по дефолту
 // }
+
+// jQuery
+
+// $(document).ready(function() {
+//     $('.list-item:first').hover(function() {
+//         $(this).toggleClass('active'); // при наведении мышки на 1 кнопку добавляется класс active а при убирании убирается
+//     });
+
+//     //eq()-указать конкретный номер элемента с данным классом
+//     //even - получить четный элемент
+//     //odd - нечетный
+
+//     $('.list-item:eq(1)').on('click', function() {
+//         $('.image:even').fadeToggle('slow');
+//     });
+
+//     $('.list-item:eq(3)').on('click', function() {
+//         $('.image:odd').animate(
+//             {
+//                 opacity: 'toggle', // toggle - при 1 клике появляется, при 2 - исчезает
+//                 height: 'toggle'
+//             }, 500
+//         );
+//     });
+    
+// });
+
+// $(document).ready(function() {
+
+//     $('.main_btna, .main_btn, a[href="#sheldure"]').click(function() {
+//         $('.overlay').fadeIn(1000);
+//         $('.modal').slideDown(1000);
+//     });
+
+//     $('.close').click(function() {
+//         $('.modal').slideUp(1000);
+//         $('.overlay').fadeOut(1000);
+//     });
+
+// });
+
+// инкапсуляция
+
+// function User(name, age) {
+//     this.name = name;
+//     // this.age = age;
+//     let userAge = age; // использование инкапсуляции. теперь нельзя получить и изменить эту переменную извне
+
+//     this.say = function() {
+//         console.log(`Имя пользователя: ${this.name}, возраст: ${userAge}`)
+//     }
+
+//     this.getAge = function() {
+//         return userAge;
+//     }
+
+//     this.setAge = function(age) {
+//         if (typeof age === 'number' && age > 0 && age < 110) {
+//             userAge = age; // поменять значение переменной userAge
+//         } else {
+//             console.log('Недопустимое значение');
+//         }
+//     }
+// }
+
+// let ivan = new User('Ivan', 25);
+
+// // console.log(ivan.age);
+// // console.log(ivan.userAge);
+
+// console.log(ivan.getAge());
+// ivan.setAge(30);
+// console.log(ivan.getAge());
+// ivan.say();
+
+// модули
+
+// 1 способ
+
+// let number = 1;
+
+// (function() {
+//     let number = 2;
+//     console.log(number);
+
+//     return console.log(number + 3);
+// }()); // анонимная самовызвающаяся функция. У нее создается своя собственная область видимости. Модуль - функциональное выражение
+
+// console.log(number);
+
+// //2 способ
+
+// let user = (function() {
+//     let privat = function() {
+//         console.log('privated');
+//     }
+
+//     return {
+//         sayHello: function() {
+//             console.log('hello');
+//         }
+//     }
+// }());
+
+// console.log(user);
+// console.log(user.sayHello());
+
+// // 3 способ
+
+// let user = (function() {
+//     let privat = function() {
+//         console.log('privated');
+//     }
+
+//     let sayHello = function() {
+//         console.log('hello');
+//     }
+
+//     return {
+//         sayHello: sayHello
+//     }
+// }());
+
+// console.log(user);
+// console.log(user.sayHello());
+
+function myModule() {
+    this.hello = function() {
+        return 'hello';
+    }
+
+    this.goodbye = function() {
+        return 'goodbye';
+    }
+}
+
+module.exports = myModule; // экспортируем модуль
